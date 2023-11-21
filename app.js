@@ -19,14 +19,17 @@ const server = http.createServer((req, res) => {
     req.on("data", (chunk) => {
       body.push(chunk);
     });
-    req.on("end", () => {
+    return req.on("end", () => {
       const parsedBody = Buffer.concat(body).toString();
       const message = parsedBody.split("=")[1];
-      fs.writeFileSync("message.tsx", message);
+      //writeFileSync, the synchronous mode and we block execution of the next line of code until this file is done
+      //fs.writeFileSync("message.tsx", message);
+      fs.writeFile("message.txt", message, (err) => {
+        res.statusCode = 302;
+        res.setHeader = ("Location", "/");
+        return res.end();
+      });
     });
-    res.statusCode = 302;
-    res.setHeader = ("Location", "/");
-    return res.end();
   }
   //process.exit();
   res.setHeader("Content-Type", "text/html");
