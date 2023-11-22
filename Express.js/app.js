@@ -1,4 +1,3 @@
-const http = require("http");
 const express = require("express");
 
 const app = express();
@@ -10,8 +9,12 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   console.log("heree!");
+  res.send("<h1>Hello from Express!</h1>");
 });
 
-const server = http.createServer(app);
+// const server = http.createServer(app);
+// server.listen(3000);
 
-server.listen(3000);
+// the two lines of vanilla node.js code above are equal to the express.js code below
+
+app.listen(3000);
