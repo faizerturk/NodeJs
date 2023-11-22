@@ -39,7 +39,7 @@ const requestHandler = (req, res) => {
   res.end();
 };
 
-//All the below codes are equal perspective of usage export
+//All the below codes are equal perspective of usage "export"
 module.exports = requestHandler;
 
 // module.exports = {
