@@ -7,7 +7,7 @@ const app = express();
 
 db.execute("SELECT * FROM products")
   .then((result) => {
-    console.log("result", result);
+    console.log("result", result[0], result[1]);
   })
   .catch((err) => {
     console.log("err", err);
