@@ -5,13 +5,13 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-db.execute("SELECT * FROM products")
-  .then((result) => {
-    console.log("result", result[0], result[1]);
-  })
-  .catch((err) => {
-    console.log("err", err);
-  });
+// db.execute("SELECT * FROM products")
+//   .then((result) => {
+//     console.log("result", result[0], result[1]);
+//   })
+//   .catch((err) => {
+//     console.log("err", err);
+//   });
 
 app.set("view engine", "ejs");
 app.set("views", "views");
