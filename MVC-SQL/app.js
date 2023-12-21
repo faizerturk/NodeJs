@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const app = express();
 const Product = require("./modals/product");
 const User = require("./modals/user");
+const Cart = require("./modals/cart");
+const CartItem = require("./modals/cart-item");
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -34,9 +36,14 @@ app.use(errorController.get404);
 
 Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
 User.hasMany(Product);
+User.hasOne(Cart);
+Cart.belongsTo(User);
+Cart.belongsToMany(Product, { through: CartItem }); // {through: CartItem} -> telling sequelize where these connection should be stored
+Product.belongsToMany(Cart, { through: CartItem });
 
 sequelize
-  .sync()
+  .sync({ force: true })
+  //.sync()
   .then((result) => {
     return User.findByPk(1);
     //console.log(result);
