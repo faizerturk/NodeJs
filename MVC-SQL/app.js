@@ -7,6 +7,8 @@ const Product = require("./modals/product");
 const User = require("./modals/user");
 const Cart = require("./modals/cart");
 const CartItem = require("./modals/cart-item");
+const Order = require("./modals/order");
+const OrderItem = require("./modals/order-item");
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -40,6 +42,9 @@ User.hasOne(Cart);
 Cart.belongsTo(User);
 Cart.belongsToMany(Product, { through: CartItem }); // {through: CartItem} -> telling sequelize where these connection should be stored
 Product.belongsToMany(Cart, { through: CartItem });
+Order.belongsTo(User);
+User.hasMany(Order); // one-to-many -> one user can has many orders
+Order.belongsToMany(Product, { through: OrderItem });
 
 sequelize
   //.sync({ force: true })
