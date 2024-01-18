@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
-const User = require('./modals/user');
+const User = require('./models/user');
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
