@@ -1,4 +1,4 @@
-const Product = require('../models/product');
+const Product = require('../modals/product');
 
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
@@ -20,7 +20,7 @@ exports.postAddProduct = (req, res, next) => {
     imageUrl: imageUrl,
   });
   product
-    .save()
+    .save() // now this save method comes from mongoose before that we make a save() method in the product modals
     .then(() => {
       console.log('Created product');
       res.redirect('/admin/products');
