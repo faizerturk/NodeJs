@@ -1,4 +1,4 @@
-const Product = require('../modals/product');
+const Product = require('../models/product');
 
 exports.getProducts = (req, res, next) => {
   Product.find()
