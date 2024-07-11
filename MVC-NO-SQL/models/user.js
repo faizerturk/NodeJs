@@ -15,7 +15,11 @@ const userSchema = new Schema({
     // this field going to store an array
     items: [
       {
-        productId: { type: Schema.Types.ObjectId, required: true },
+        productId: {
+          type: Schema.Types.ObjectId,
+          ref: 'Product',
+          required: true,
+        },
         quantity: { type: Number, required: true },
       },
     ],
