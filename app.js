@@ -20,11 +20,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   User.findById('5bab316ce0a7c75f783cb8a8')
-    .then(user => {
+    .then((user) => {
       req.user = user;
       next();
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 });
 
 app.use('/admin', adminRoutes);
@@ -34,23 +34,21 @@ app.use(errorController.get404);
 
 mongoose
   .connect(
-    'mongodb+srv://maximilian:9u4biljMQc4jjqbe@cluster0-ntrwp.mongodb.net/shop?retryWrites=true'
+    'mongodb+srv://faize:r3RGN8OFfU2IiEl5@cluster0.zhfufyo.mongodb.net/shop?retryWrites=true'
   )
-  .then(result => {
-    User.findOne().then(user => {
+  .then((result) => {
+    User.findOne().then((user) => {
       if (!user) {
         const user = new User({
-          name: 'Max',
-          email: 'max@test.com',
-          cart: {
-            items: []
-          }
+          name: 'Faize',
+          email: 'faize@cluster0',
+          cart: { items: [] },
         });
         user.save();
       }
     });
     app.listen(3000);
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
   });
